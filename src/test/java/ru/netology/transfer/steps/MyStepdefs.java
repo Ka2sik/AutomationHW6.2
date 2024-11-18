@@ -32,8 +32,7 @@ public class MyStepdefs {
 
     @Когда("пользователь переводит {int} рублей с карты с номером {string} на свою {int} карту с главной страницы,")
     public void transferAmountFromCardNumberToCardNumberInOrder(int amount, String cardNumber, int cardNumberInOrder) {
-        DataHelper.CardInfo cardInfo = DataHelper.getCardInfo(cardNumberInOrder);
-        transferPage = dashboardPage.selectCardToTransfer(cardInfo);
+        transferPage = dashboardPage.selectCardToTransfer(DataHelper.allCards[cardNumberInOrder - 1]);
         transferPage.transferMoney(String.valueOf(amount), cardNumber);
         dashboardPage.reloadDashboardPage();
     }
